@@ -1,0 +1,107 @@
+<!-- Sing in  Form -->
+<%- include('partials/header') %>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered rounded " style role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 id="message"><b></b></h4>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary" id="modalclose">OK</a>
+      </div>
+      </div>
+      </div>
+</div>
+
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="/images/signin-image.jpg" alt="sing up image"></figure>
+                <a href="/" class="signup-image-link">Create an account</a>
+            </div>
+
+            <div class="signin-form">
+                <h2 class="form-title">Sign up</h2>
+                <form method="POST" class="register-form" id="login-form">
+                    <div class="form-group">
+                        <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input type="email" name="your_email" id="your_email" placeholder="Your Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                    </div>
+
+                    <div class="form-group form-button">
+                        <a style="color:#fff"type="button"  onclick="login();"  class="btn btn-dark">Login</a>
+                    </div>
+                </form>
+                <div class="social-login">
+                    <span class="social-label">Or login with</span>
+                    <ul class="socials">
+                        <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                        <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                        <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                    </ul>
+                </div>
+<script type="text/javascript">
+  function login(){
+            console.log("gfjf");
+    var data = {};
+      header_msg=document.getElementById("exampleModalLongTitle");
+      msg = document.getElementById("message");
+      closebtn = document.getElementById('modalclose');
+    data.email = document.getElementById("your_email").value;
+    data.password = document.getElementById("your_pass").value;
+
+
+    console.log(data);
+    $.ajax({
+          type: 'POST',
+          data:data,
+          url: '/login',
+          success: function(returns){
+              if (returns.foundUser){
+                header_msg.innerHTML="Success";
+                    document.getElementById("exampleModalLongTitle").style.color = "green";
+                    document.getElementById("modalclose").style.color="green";
+                    msg.innerHTML = "Login Success!"
+                    msg.style.color="green";
+                     closebtn.setAttribute("href", "/welcome");
+                   $('#exampleModalCenter').modal();
+
+
+                }
+              else{
+                document.getElementById("exampleModalLongTitle").style.color = "red";
+                  document.getElementById("modalclose").style.color="red";
+                    header_msg.innerHTML=" Alert!!";
+                    msg.style.color="red";
+                    msg.innerHTML = "Invalid credentials !!!"
+                    document.getElementById("exampleModalLongTitle").style.color = "red";
+                  closebtn.setAttribute("href", "/login");
+                  $('#exampleModalCenter').modal();
+
+                }
+          }
+        });
+      }
+
+
+</script>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<%- include('partials/footer') %>

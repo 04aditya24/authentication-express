@@ -1,0 +1,229 @@
+ <%- include('partials/header') %>
+
+     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 id="message"><b></b></h4>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary" id="modalclose">OK</a>
+      </div>
+      </div>
+      </div>
+</div>
+     <div>
+
+         <!-- Sign up form -->
+         <!-- <section class="signup"> -->
+             <div class="container">
+                 <div class="signup-content">
+                     <div class="signup-form">
+                         <h2 class="form-title">Sign up</h2>
+                         <form method="POST" class="register-form" id="register-form">
+                             <div class="form-group">
+                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                 <input type="text" name="name" id="name" placeholder="Your Name"/>
+                             </div>
+                             <div class="form-group">
+                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                 <input type="email" name="email" id="email" placeholder="Your Email"/>
+                             </div>
+                             <div class="form-group">
+                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                 <input type="password" name="pass" id="pass" placeholder="Password"/>
+                                    <span style="color:#a6a6a6;" >Password Must Contain,[A-Z][a-z][0-9]</span>
+                             </div>
+                             <div class="form-group">
+                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                 <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                             </div>
+
+                             <div class="form-group form-button">
+                                 <!-- <button onclick="save();"type="button" name="signup" id="signup" class="form-submit" >Register<button/> -->
+                                      <a style="color:#fff" type="button"  onclick="save();"  class="btn btn-dark">Register</a>
+                             </div>
+                         </form>
+                     </div>
+                     <div class="signup-image">
+                         <figure><img src="/images/signup-image.jpg" alt="sing up image"></figure>
+                         <a href="/login" class="signup-image-link">I am already member</a>
+                     </div>
+
+          <!-- </section> -->
+
+           <script type="text/javascript">
+
+
+             function validatePassword(){
+
+ document.getElementById("exampleModalLongTitle").innerHTML="Alert!!";
+  document.getElementById("exampleModalLongTitle").style.color = "Red";
+
+  var p = document.getElementById('pass').value,
+  msg = document.getElementById("message");
+  msg.style.color="red";
+  closebtn = document.getElementById('modalclose');
+      errors = [];
+  if (p.length<6) {
+      errors.push("Your password must be greater 6 characters.<br> ");
+        document.getElementById("pass").style.border="solid 1px red";
+  }
+  if (p.search(/[a-z]/i) < 0) {
+      errors.push("Your password must contain at least one lowercase.<br>");
+        document.getElementById("pass").style.border="solid 1px red";
+  }
+  if (p.search(/[0-9]/) < 0) {
+      errors.push("Your password must contain at least one digit.<br>");
+        document.getElementById("pass").style.border="solid 1px red";
+  }
+  if (p.search(/[A-Z]/) < 0) {
+      errors.push("Your password must contain at least one uppercase.<br>");
+        document.getElementById("pass").style.border="solid 1px red";
+  }
+  if (errors.length > 0) {
+
+      msg.innerHTML = (errors.join("\n"));
+      document.getElementById("exampleModalLongTitle").style.color = "Red";
+      closebtn.setAttribute("href", "/");
+      $('#exampleModalCenter').modal();
+        return false;
+  }
+  return true;
+}
+
+
+
+             function required (){
+            document.getElementById("exampleModalLongTitle").innerHTML="Alert!!";
+             document.getElementById("exampleModalLongTitle").style.color = "Red";
+               closebtn = document.getElementById('modalclose');
+            console.log("require");
+              msg1 = document.getElementById("message");
+              msg1.style.color="red";
+              //var form = document.getElementById('name').value;
+              errors1=[];
+              var name= document.getElementById("name").value;
+              var email = document.getElementById("email").value;
+              var password = document.getElementById("pass").value;
+              var re_password=document.getElementById("re_pass").value;
+
+              if(name==""){
+                errors1.push("Please Enter Your Full Name.<br>");
+                  document.getElementById("name").style.border="solid 1px red";
+              }
+
+            if (email=="") {
+                  errors1.push("Please Enter Your Email.<br>" );
+                    document.getElementById("email").style.border="solid 1px red";
+              }
+              if (password=="") {
+                    errors1.push("Please Enter Your Password.<br>");
+                    document.getElementById("pass").style.border="solid 1px red";
+                }
+                if ( re_password=="") {
+                      errors1.push("Repeat your Password.<br>");
+                      document.getElementById("re_pass").style.border="solid 1px red";
+                  }
+
+                if (errors1.length > 0) {
+                  msg1.innerHTML = "All fields are mandatory ";
+                  document.getElementById("modalclose").style.color="red";
+                  closebtn.setAttribute("href", "/");
+                  $('#exampleModalCenter').modal();
+
+                  return false;
+                }
+
+              return true;
+            }
+
+
+
+             function confirm_password(){
+               header_msg=document.getElementById("exampleModalLongTitle");
+            msg = document.getElementById("message");
+            closebtn = document.getElementById('modalclose');
+  first_password= document.getElementById("pass").value;
+  re_password= document.getElementById("re_pass").value;
+        if(first_password!=re_password){
+          header_msg.innerHTML=" Alert!!";
+             document.getElementById("modalclose").style.color="red";
+            document.getElementById("exampleModalLongTitle").style.color="red";
+                    msg.style.color="red";
+            msg.innerHTML = "Password not matched"
+            closebtn.setAttribute("href", "/");
+        $('#exampleModalCenter').modal();
+        return false;
+        }
+        //   header_msg.innerHTML="Success";
+        //      document.getElementById("modalclose").style.color="green";
+        //     document.getElementById("exampleModalLongTitle").style.color="green";
+        //             msg.style.color="green";
+        //     msg.innerHTML = "User Save"
+        //     closebtn.setAttribute("href", "/login");
+        // $('#exampleModalCenter').modal();
+        //      console.log("save data ")
+}
+function save (){
+
+     var data = {};
+     data.name= document.getElementById("name").value;
+     console.log(data.name);
+     data.email = document.getElementById("email").value;
+     data.pass = document.getElementById("pass").value;
+
+
+     var y=required()
+   if(y==false){
+     return;
+   }
+
+   var z = validatePassword()
+
+  if(z==false){
+    return;
+  }
+   var x=confirm_password()
+     if(x==false){
+       return;
+   }
+
+  $.ajax({
+  type: 'post',
+  data: data,
+  url: '/',
+  success: function(returns){
+    if(returns){
+      console.log("user save by ajax");
+      header_msg.innerHTML="Success";
+          document.getElementById("modalclose").style.color="green";
+         document.getElementById("exampleModalLongTitle").style.color="green";
+                 msg.style.color="green";
+         msg.innerHTML = "User Save"
+         closebtn.setAttribute("href", "/login");
+     $('#exampleModalCenter').modal();
+          console.log("save data ");
+
+    }else{
+      console.log("user not save by ajax");
+    }
+  }
+});
+}
+
+
+  </script>
+</div>
+</div>
+</div>
+
+
+
+ <%- include('partials/footer') %>

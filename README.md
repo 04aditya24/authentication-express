@@ -4,8 +4,8 @@
 * User can Login & Signup.
 * Fetching data from database.  
 * Validation
-              * Password Validation.
-              * Fields mandatory.
+     * Password Validation.
+     * Fields mandatory.
 * Used bcrypt,salt for password. 
 
 #### For Backend :-MongoDb Atlas ####

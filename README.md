@@ -1,9 +1,15 @@
 # authentication-express #
 ###This is a sample application that demonstrates an user authantication
-flow for a web app using Node Js web application built with the Express framework.###
+flow for a web app using Node Js web application built with the Express framework.###\
+
+*User can Login & Signup.
+*Fetching data from database.  
+*Validation
+              *Password Validation.
+              *Fields mandatory.
+*Used bcrypt,salt for password.
  
--Add User Login & Logout.
--Fetching data from database. 
--Password Validation,All fields are man
+ ####For Backend :-MongoDb Atlas####
+ ####For Frontend :-Heroku ####
 
 URL:https://authentication-express-feb.herokuapp.com/

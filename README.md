@@ -1,5 +1,5 @@
 
- # authentication-express #
+ # Authentication-express #
 ### This is a sample application that demonstrates an user authantication flow for a web app using Node Js web application built with the Express framework. ###
 * User can Login & Signup.
 * Fetching data from database.  
